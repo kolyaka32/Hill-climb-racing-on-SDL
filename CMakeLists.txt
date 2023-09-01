@@ -12,6 +12,10 @@ add_executable(base
     src/im_load.hpp
     src/im_load.cpp
 
+    # Function of initialasing all data
+    src/init.hpp
+    src/init.cpp
+
     # Extra functions
     src/perlin.hpp
 

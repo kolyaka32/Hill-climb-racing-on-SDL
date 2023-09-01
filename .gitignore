@@ -12,4 +12,6 @@ x86_64-w64-mingw32/
 
 *.exe
 *.dll
-*.7z  *.tar.gz  *.zip
+*.7z
+*.tar.gz
+*.zip
