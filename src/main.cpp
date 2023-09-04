@@ -13,16 +13,6 @@ App app;
 // Flags of running
 bool running = true;  // Flag of main cycle work
 
-// Function of getting collision of 2 objects
-bool isCollide(SDL_Rect rect1, SDL_Rect rect2){
-    return (
-        ((rect1.y < rect2.y+rect2.h) &&
-        (rect1.y+rect1.h > rect2.y))
-        &&
-        ((rect1.x < rect2.x+rect2.w) &&
-        (rect1.x+rect1.w > rect2.x))
-    );
-}
 
 // Main function
 int main(int argv, char** args){

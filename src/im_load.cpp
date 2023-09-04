@@ -12,6 +12,10 @@
     IMG_SURF,
     IMG_GRND,
     IMG_SKY,
+    // Images of car
+    IMG_bode,
+    IMG_tire,
+    IMG_antenna,
     // Final count of textures in total
     IMG_count
 */
@@ -35,6 +39,11 @@ bool loadAllTextures(){
     loadTexture(IMG_SURF, "img/surface/terrain-surface.png");
     loadTexture(IMG_GRND, "img/ground/terrain-ground.png");
     loadTexture(IMG_SKY, "img/sky/sky-bg.png");
+
+    // Images of car
+    loadTexture(IMG_body, "img/car/car.png");
+    loadTexture(IMG_tire, "img/car/tire.png");
+    loadTexture(IMG_antenna, "img/car/antenna.png");
 
     return (c == IMG_count);  // Returning correcting of loading
 }

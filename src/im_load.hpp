@@ -15,6 +15,10 @@ enum IMG_names{
     IMG_SURF,
     IMG_GRND,
     IMG_SKY,
+    // Images of car
+    IMG_body,
+    IMG_tire,
+    IMG_antenna,
     // Final count of textures in total
     IMG_count
 };

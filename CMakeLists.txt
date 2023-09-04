@@ -16,14 +16,19 @@ add_executable(base
     src/init.hpp
     src/init.cpp
 
-    # Extra functions
+    # Extra math functions
     src/perlin.hpp
 
     # Base screen and HUD functions
     #src/baseHud.hpp
     #src/baseHud.cpp
     
-    #
+    # On screen objects work
+    src/entity.hpp
+    src/entity.cpp
+
+    src/object.hpp
+    src/object.cpp
 
     # Main function
     src/main.cpp
