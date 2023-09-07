@@ -31,6 +31,7 @@ add_executable(base
     src/object.cpp
 
     # Main function
+    src/main.hpp
     src/main.cpp
     
 )

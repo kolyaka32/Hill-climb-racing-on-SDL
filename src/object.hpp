@@ -1,25 +1,21 @@
 #pragma once
 
 #include "include.hpp"
-#include "im_load.hpp"
 #include "entity.hpp"
 
 // Game classes
 // Base entity in-game class
-class Vehicle:public Entity{
+class Vehicle{
 private:
+    SDL_Texture *texture;
     int x, y;
-    Wheel* tires;
+    float rotation;
+    SDL_Rect dest;
+    Wheel* tires[2];
 public:
-    Vehicle( SDL_Texture* body, Wheel* subEntities[]);
+    Vehicle( SDL_Texture* body, Wheel* fwheel, Wheel* swheel );
     void blit();
-    void update();
+    void update( int ddx );
 };
 
-extern Vehicle Car(
-    Textures[IMG_body],
-    {
-        {20, 20, Textures[IMG_tire]},
-        {60, 20, Textures[IMG_tire]}
-    }
-);
+extern Vehicle Car;

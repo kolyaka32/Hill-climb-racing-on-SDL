@@ -8,25 +8,31 @@ bool rectCoolideExternal(SDL_Rect rect1, SDL_Rect rect2);
 // Game classes
 // Base entity in-game class
 class Entity{
-private:
+protected:
     SDL_Texture *texture;
     SDL_Rect dest;
     SDL_Point location;
 public:
-    Entity(int cx, int cy, SDL_Texture* tex);
+    //Entity(int cx, int cy, SDL_Texture* newTexture);
     void blit();
     void update(int cx, int cy);
-    void set(int x, int y);
 };
 
 class Wheel:public Entity
 {
 private:
     float rotate;
+    int cx, cy;
 public:
-    Wheel(/* args */);
-    ~Wheel();
-
+    Wheel(const int cx, const int cy, SDL_Texture* newTexture);
+    void set(int x);
+    //~Wheel();
+    void blit(int x, int y, float angle);
+    //
+    void blit(int x);
     // Function of 
-    SDL_Point update(int h);
+    int update(int x, int y);
+    void update(int x);
+    //
+    int getH(int x);
 };

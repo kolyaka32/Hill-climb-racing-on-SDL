@@ -34,6 +34,8 @@
 # include <random>
 # include <type_traits>
 
+# include "define.hpp"
+
 # if __has_include(<concepts>) && defined(__cpp_concepts)
 #	include <concepts>
 # endif
@@ -657,3 +659,12 @@ namespace siv
 # undef SIVPERLIN_NODISCARD_CXX20
 # undef SIVPERLIN_CONCEPT_URBG
 # undef SIVPERLIN_CONCEPT_URBG_
+
+
+
+extern const siv::PerlinNoise perlin;
+
+inline int per(int x)
+{
+    return perlin.normalizedOctave1D_01((x)*Perstep, Peroctave, Perpersistance)*Peramplitude + Peroffset;
+}

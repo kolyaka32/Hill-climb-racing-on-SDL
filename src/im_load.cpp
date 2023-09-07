@@ -3,26 +3,6 @@
 
 #include "im_load.hpp"
 
-/*
-    IMG_point,
-    IMG_slider_line,
-    IMG_slider_button,
-    IMG_line,
-    // Images of terrain
-    IMG_SURF,
-    IMG_GRND,
-    IMG_SKY,
-    // Images of car
-    IMG_bode,
-    IMG_tire,
-    IMG_antenna,
-    // Final count of textures in total
-    IMG_count
-*/
-
-//App app;
-//SDL_Texture *Textures[IMG_count];
-
 int c;  // Counter of loaded textures
 
 // Load all textures
@@ -32,7 +12,7 @@ bool loadAllTextures(){
     // Base hud elements
     loadTexture(IMG_point, "img/old textures/point.png");
     loadTexture(IMG_slider_line, "img/old textures/slider_line.png");
-    loadTexture(IMG_slider_button, "img/old textures/slide_button.png");
+    loadTexture(IMG_slider_button, "img/old textures/slider_button.png");
     loadTexture(IMG_line, "img/old textures/line.png");
 
     // Images of terrain

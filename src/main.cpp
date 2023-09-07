@@ -3,16 +3,26 @@
 #include "structs.hpp"
 
 #include "init.hpp"
-#include "im_load.hpp"
 #include "perlin.hpp"
+
+#include "main.hpp"
+
+#include "im_load.hpp"
+#include "object.hpp"
 
 // Global variables of other
 SDL_Texture *Textures[IMG_count];  // Array of all textures
 App app;
 
+//Wheel FWheel(20, 20, Textures[IMG_tire] );
+//Wheel SWheel(60, 20, Textures[IMG_tire] );
+
+//typedef Vehicle Car;
+
 // Flags of running
 bool running = true;  // Flag of main cycle work
 
+const siv::PerlinNoise perlin;
 
 // Main function
 int main(int argv, char** args){
@@ -22,12 +32,22 @@ int main(int argv, char** args){
     SDL_Event event;
     int x = 0; int dx = 0;
 
-    const siv::PerlinNoise::seed_type seed = 123456;
+    const siv::PerlinNoise::seed_type seed = Perseed;
 	const siv::PerlinNoise perlin{ seed };
 
     int groundW = 0; int grassH = 0;
     SDL_QueryTexture(Textures[IMG_GRND], NULL, NULL, &groundW, NULL);
     SDL_QueryTexture(Textures[IMG_SURF], NULL, NULL, NULL, &grassH);
+
+    // Initialasing objects
+    Wheel FWheel(7, 45, Textures[IMG_tire] );
+    Wheel SWheel(87, 45, Textures[IMG_tire] );
+
+    Vehicle Car(
+        Textures[IMG_body],
+        &FWheel,//{20, 20, Textures[IMG_tire]},
+        &SWheel//{60, 20, Textures[IMG_tire]}
+    );
 
     // Main game cycle
 	while(running)
@@ -55,6 +75,9 @@ int main(int argv, char** args){
         }
         x += dx;
         if(x < 0){x=0;}
+
+        // Updating on screen objects
+        Car.update( x );
         
         // Drawing objects at screen
         SDL_SetRenderDrawColor(app.renderer, 77, 143, 172, 255);  // Drawing shield bar
@@ -65,7 +88,7 @@ int main(int argv, char** args){
 
         // Drawing terrain
         for(int ddx=0; ddx<SCREEN_WIDTH;++ddx){
-            int h = perlin.normalizedOctave1D_01((x+ddx)*0.005, 4, 0.5)*300+250;
+            int h = per(x+ddx);
             SDL_Rect srcStn = {(x+ddx) % groundW, 0, 1, SCREEN_HEIGHT-h};
             SDL_Rect desStn = {ddx, h, 1, SCREEN_HEIGHT-h};
             SDL_RenderCopyEx(app.renderer, Textures[IMG_GRND], &srcStn, &desStn, 0, NULL, SDL_FLIP_NONE);  // Draw ground
@@ -73,6 +96,8 @@ int main(int argv, char** args){
             SDL_Rect desGrs = {ddx, h-grassH/2, 1, grassH};
             SDL_RenderCopyEx(app.renderer, Textures[IMG_SURF], &srcGrs, &desGrs, 0, NULL, SDL_FLIP_NONE);  // Draw up surface
         }
+
+        Car.blit();  // Drawing car and her parts at screen
 
         SDL_RenderPresent(app.renderer);  // Blitting textures on screen
 		SDL_Delay(1000 / FPS);  // Delaying time to decrease CPU loading
